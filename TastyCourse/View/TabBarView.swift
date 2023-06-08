@@ -17,7 +17,7 @@ struct TabBarView: View {
                     Label("Каталог", systemImage: "menucard")
                 }
             
-            CartView(viewModel: CartViewModel())
+            CartView(viewModel: CartViewModel.shared)
                 .tabItem {
                     Label("Корзина", systemImage: "cart")
                 }

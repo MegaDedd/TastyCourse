@@ -13,6 +13,7 @@ struct ProductDetailView: View {
     @State var count = 1
     
     var viewModel: ProductDetailViewModel
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         
@@ -51,7 +52,14 @@ struct ProductDetailView: View {
             }
             
             Button {
-                print("add cart")
+                var position = Position(id: UUID().uuidString,
+                                        product: viewModel.product,
+                                        count: self.count)
+                
+                position.product.price = viewModel.getPrice(size: size)
+                
+                CartViewModel.shared.addPosition(position)
+                dismiss()
             } label: {
                 Text("В корзину")
                     .padding()
