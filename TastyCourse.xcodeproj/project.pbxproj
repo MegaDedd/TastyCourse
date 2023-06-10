@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8B2D53922A3468C700A76F6A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B2D53912A3468C700A76F6A /* GoogleService-Info.plist */; };
 		8B2D53952A346EF500A76F6A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8B2D53942A346EF500A76F6A /* FirebaseAuth */; };
 		8B2D53972A346EF600A76F6A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8B2D53962A346EF600A76F6A /* FirebaseFirestore */; };
 		8B2D53992A346EF600A76F6A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 8B2D53982A346EF600A76F6A /* FirebaseStorage */; };
@@ -27,10 +26,12 @@
 		8BB141E92A31F2E000FD9E51 /* PositionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB141E82A31F2E000FD9E51 /* PositionCell.swift */; };
 		8BB524E02A29E03700F5BC82 /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB524DF2A29E03700F5BC82 /* CartViewModel.swift */; };
 		8BB524E22A29E06600F5BC82 /* Positions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB524E12A29E06600F5BC82 /* Positions.swift */; };
+		8BB77A842A34885200F6131E /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB77A832A34885200F6131E /* AuthService.swift */; };
+		8BB77A892A349D6700F6131E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BB77A882A349D6700F6131E /* GoogleService-Info.plist */; };
+		8BB77A8B2A34A10400F6131E /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB77A8A2A34A10400F6131E /* TabBarViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8B2D53912A3468C700A76F6A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8B601AFE2A28A258005F0F17 /* TastyCourse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TastyCourse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B601B012A28A258005F0F17 /* TastyCourseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TastyCourseApp.swift; sourceTree = "<group>"; };
 		8B601B032A28A258005F0F17 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
@@ -48,6 +49,9 @@
 		8BB141E82A31F2E000FD9E51 /* PositionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionCell.swift; sourceTree = "<group>"; };
 		8BB524DF2A29E03700F5BC82 /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
 		8BB524E12A29E06600F5BC82 /* Positions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Positions.swift; sourceTree = "<group>"; };
+		8BB77A832A34885200F6131E /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		8BB77A882A349D6700F6131E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8BB77A8A2A34A10400F6131E /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,11 +88,12 @@
 			isa = PBXGroup;
 			children = (
 				8B601B012A28A258005F0F17 /* TastyCourseApp.swift */,
+				8BB77A852A34886500F6131E /* Services */,
 				8B601B1A2A28B8D1005F0F17 /* Model */,
 				8B601B172A28B891005F0F17 /* View */,
 				8B601B1E2A28D56A005F0F17 /* ViewModel */,
 				8B601B052A28A25A005F0F17 /* Assets.xcassets */,
-				8B2D53912A3468C700A76F6A /* GoogleService-Info.plist */,
+				8BB77A882A349D6700F6131E /* GoogleService-Info.plist */,
 				8B601B072A28A25A005F0F17 /* Preview Content */,
 			);
 			path = TastyCourse;
@@ -140,8 +145,17 @@
 				8B601B1F2A28D594005F0F17 /* CatalogViewModel.swift */,
 				8B601B252A28E417005F0F17 /* ProductDetailViewModel.swift */,
 				8BB524DF2A29E03700F5BC82 /* CartViewModel.swift */,
+				8BB77A8A2A34A10400F6131E /* TabBarViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8BB77A852A34886500F6131E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8BB77A832A34885200F6131E /* AuthService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,7 +226,7 @@
 			files = (
 				8B601B092A28A25A005F0F17 /* Preview Assets.xcassets in Resources */,
 				8B601B062A28A25A005F0F17 /* Assets.xcassets in Resources */,
-				8B2D53922A3468C700A76F6A /* GoogleService-Info.plist in Resources */,
+				8BB77A892A349D6700F6131E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,10 +245,12 @@
 				8B601B022A28A258005F0F17 /* TastyCourseApp.swift in Sources */,
 				8BB141E92A31F2E000FD9E51 /* PositionCell.swift in Sources */,
 				8B601B262A28E417005F0F17 /* ProductDetailViewModel.swift in Sources */,
+				8BB77A8B2A34A10400F6131E /* TabBarViewModel.swift in Sources */,
 				8BB524E22A29E06600F5BC82 /* Positions.swift in Sources */,
 				8B601B162A28B722005F0F17 /* ProfileView.swift in Sources */,
 				8B601B1D2A28BA31005F0F17 /* ProductCell.swift in Sources */,
 				8B601B192A28B8C2005F0F17 /* ProductModel.swift in Sources */,
+				8BB77A842A34885200F6131E /* AuthService.swift in Sources */,
 				8B601B142A28B712005F0F17 /* CatalogView.swift in Sources */,
 				8B601B202A28D594005F0F17 /* CatalogViewModel.swift in Sources */,
 			);
