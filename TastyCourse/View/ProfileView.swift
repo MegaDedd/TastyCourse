@@ -8,8 +8,77 @@
 import SwiftUI
 
 struct ProfileView: View {
+    
+    @State var isAvaAlertPresented = false
+    @State var isQuitAlertPresented = false
+    @State var isAuthViewPresented = false
+    
     var body: some View {
-        Text("ProfileView")
+        VStack(alignment: .center, spacing: 20) {
+            HStack(spacing: 16) {
+                Image(systemName: "person")
+                    .resizable()
+                    .frame(width: 80, height: 80)
+                    .padding(8)
+                    .background(Color("profilePerson"))
+                    .clipShape(Circle())
+                    .onTapGesture {
+                        isAvaAlertPresented.toggle()
+                    }
+                    .confirmationDialog("Откуда взять фото", isPresented: $isAvaAlertPresented) {
+                        Button {
+                            print("Библиотека")
+                        } label: {
+                            Text("галерея")
+                        }
+                        Button {
+                            print("Камера")
+                        } label: {
+                            Text("камера")
+                        }
+
+                    }
+                
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Инокентий инокентиевич")
+                        .fontWeight(.bold)
+                    Text("+79277615678")
+                }
+            }
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Адресс доставки:")
+                    .bold()
+                Text("Россия,Самарская область, г. Самара, ул. Братьев Корастелевых, д. 5, строение: Ебейшее")
+            }
+            
+            // таблица с заказами
+            List {
+                Text("ваши заказы будут здесь")
+            }
+            .listStyle(.plain)
+            Button {
+                isQuitAlertPresented.toggle()
+            } label: {
+                Text("выйти")
+                    .padding()
+                    .padding(.horizontal, 30)
+                    .background(Color.red)
+                    .cornerRadius(20)
+                    .foregroundColor(.white)
+                    .padding()
+            }
+            .confirmationDialog("Уверены что хотите выйти?", isPresented: $isQuitAlertPresented) {
+                Button {
+                    isAuthViewPresented.toggle()
+                } label: {
+                    Text("Yes")
+                }
+            }
+            .fullScreenCover(isPresented: $isAuthViewPresented) {
+                AuthView()
+            }
+        }
+        .padding(3)
     }
 }
 
