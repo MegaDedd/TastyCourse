@@ -19,7 +19,12 @@ struct TastyCourseApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) private var delegate // связали класс AppDelegate с TastyCourseApp
     var body: some Scene {
         WindowGroup {
-            AuthView()
+            if let user = AuthService.shared.currentUser {
+                let viewModel = TabBarViewModel(user: user)
+                TabBarView(viewModel: viewModel)
+            } else {
+                AuthView()
+            }
         }
     }
 }
