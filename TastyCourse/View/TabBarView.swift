@@ -25,7 +25,10 @@ struct TabBarView: View {
                     Label("Корзина", systemImage: "cart")
                 }
             
-            ProfileView()
+            ProfileView(viewModel: ProfileViewModel(profile: MWUser(id: "",
+                                                                         name: "",
+                                                                         phone: 0000000000,
+                                                                         address: "")))
                 .tabItem {
                     Label("Профиль", systemImage: "person.circle")
                 }

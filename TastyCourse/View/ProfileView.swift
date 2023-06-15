@@ -13,6 +13,8 @@ struct ProfileView: View {
     @State var isQuitAlertPresented = false
     @State var isAuthViewPresented = false
     
+    @StateObject var viewModel: ProfileViewModel
+    
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
             HStack(spacing: 16) {
@@ -40,16 +42,20 @@ struct ProfileView: View {
                     }
                 
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("Инокентий инокентиевич")
+                    TextField("Имя", text: $viewModel.profile.name)
                         .fontWeight(.bold)
-                    Text("+79277615678")
+                    HStack {
+                        Text("+7")
+                        TextField("Номер тлф", value: $viewModel.profile.phone, format: .number)
+                    }
                 }
             }
             VStack(alignment: .leading, spacing: 8) {
                 Text("Адресс доставки:")
                     .bold()
-                Text("Россия,Самарская область, г. Самара, ул. Братьев Корастелевых, д. 5, строение: Ебейшее")
+                TextField("Введите ваш адресс", text: $viewModel.profile.address)
             }
+            .padding(.horizontal, 12)
             
             // таблица с заказами
             List {
@@ -78,12 +84,22 @@ struct ProfileView: View {
                 AuthView()
             }
         }
+        
+        .onSubmit {
+            viewModel.setProfile()
+        }
+        
+        .onAppear {
+            self.viewModel.getProfile()
+        }
         .padding(3)
+        
+    
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(viewModel: ProfileViewModel(profile: MWUser(id: "", name: "Konstantin topor", phone: 9277614241, address: "мой дом находиттся где то там")))
     }
 }
