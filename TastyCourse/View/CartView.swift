@@ -52,9 +52,22 @@ struct CartView: View {
                         .cornerRadius(24)
                 }
                 Button {
-                    print("select")
+                    print("заказать")
+                    
+                    var order = Order(userID: AuthService.shared.currentUser!.uid,
+                                      date: Date(),
+                                      status: OrderStatus.new.rawValue)
+                    order.positions = self.viewModel.positions
+                    DataBaseService.shared.setOrder(order: order) { result in
+                        switch result {
+                        case .success(let order):
+                            print(order.cost)
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
                 } label: {
-                    Text("Select")
+                    Text("заказать")
                         .font(.body)
                         .fontWeight(.bold)
                         .padding()
