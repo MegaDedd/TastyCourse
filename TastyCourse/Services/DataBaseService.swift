@@ -18,9 +18,48 @@ class DataBaseService {
        return db.collection("users")
     }
     
+    private var orderRef: CollectionReference { // ссылка на коллекцию заказов
+        return db.collection("orders")
+    }
+    
     private init() { }
     
-    func setProfile(user: MWUser, completion: @escaping (Result<MWUser, Error>) -> (Void)) {
+    // отправляем заказ в базу данных
+    func setOrder(order: Order,
+                  completion: @escaping (Result<Order, Error>) -> Void) {
+        orderRef.document(order.id).setData(order.representation) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                self.setPositions(to: order.id,
+                             positions: order.positions) { result in
+                    switch result {
+                    case .success(let positions):
+                        print(positions.count)
+                        completion(.success(order))
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
+    
+    func setPositions(to orderId: String,
+                     positions: [Position],
+                     completion: @escaping (Result<[Position], Error>) -> Void) {
+        
+        let positionsRef = orderRef.document(orderId).collection("positions") // ссылка на позиции
+        
+        for position in positions {
+            positionsRef.document(position.id).setData(position.representation)
+        }
+        completion(.success(positions))
+        
+    }
+    
+    func setProfile(user: MWUser,
+                    completion: @escaping (Result<MWUser, Error>) -> Void) {
         
             // записываем юзера в коллекцию
             usersRef.document(user.id).setData(user.representation) { error in
